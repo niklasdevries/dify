@@ -228,6 +228,7 @@ services:
     <<: *shared-api-worker-config
     image: langgenius/dify-api:1.14.2
     environment:
+      HOME: /tmp
       MODE: api
       SENTRY_DSN: ${API_SENTRY_DSN:-}
       SENTRY_TRACES_SAMPLE_RATE: ${API_SENTRY_TRACES_SAMPLE_RATE:-1.0}
@@ -274,6 +275,7 @@ services:
     profiles:
       - collaboration
     environment:
+      HOME: /tmp
       MODE: api
       SERVER_WORKER_AMOUNT: 1
       SERVER_WORKER_CLASS: ${API_WEBSOCKET_WORKER_CLASS:-geventwebsocket.gunicorn.workers.GeventWebSocketWorker}
@@ -298,6 +300,7 @@ services:
     <<: *shared-worker-config
     image: langgenius/dify-api:1.14.2
     environment:
+      HOME: /tmp
       MODE: worker
       SENTRY_DSN: ${API_SENTRY_DSN:-}
       SENTRY_TRACES_SAMPLE_RATE: ${API_SENTRY_TRACES_SAMPLE_RATE:-1.0}
@@ -429,6 +432,7 @@ services:
                -c 'idle_in_transaction_session_timeout=${POSTGRES_IDLE_IN_TRANSACTION_SESSION_TIMEOUT:-0}'
     volumes:
       - dify_db_data:/var/lib/postgresql/data
+      - ./postgres/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
     healthcheck:
       test:
         [

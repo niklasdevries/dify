@@ -11,7 +11,7 @@ The current setup utilizes **Docker Named Volumes** to avoid host permission/exi
 ### Step 1: Push Your Changes to Git
 Ensure your modified `docker-compose.yaml` (configured with Named Volumes) and your changes are committed and pushed to your git repository (e.g., GitHub, GitLab, or self-hosted Git):
 ```bash
-git add docker/docker-compose.yaml docker/docker-compose-template.yaml docker/.env
+git add docker/docker-compose.yaml docker/docker-compose-template.yaml docker/.env docker/postgres/init-db.sh
 git commit -m "Configure Dify with Docker Named Volumes and production environment settings"
 git push origin main
 ```

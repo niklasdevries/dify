@@ -256,7 +256,7 @@ services:
         condition: service_started
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ./volumes/app/storage:/app/api/storage
+      - ../files/dify-storage:/app/api/storage
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
       interval: 30s
@@ -428,7 +428,7 @@ services:
                -c 'statement_timeout=${POSTGRES_STATEMENT_TIMEOUT:-0}'
                -c 'idle_in_transaction_session_timeout=${POSTGRES_IDLE_IN_TRANSACTION_SESSION_TIMEOUT:-0}'
     volumes:
-      - ./volumes/db/data:/var/lib/postgresql/data
+      - ../files/dify-db:/var/lib/postgresql/data
     healthcheck:
       test:
         [
